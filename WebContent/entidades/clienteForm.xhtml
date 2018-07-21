@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>FORMULÁRIO DE CLIENTES</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<h:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+			<p:panelGrid columns="3" style="width: 100%">
+				<f:facet name="header">
+					<p:outputLabel
+						value="#{clienteMb.cliente.id!=0?'Alterar':'Cadastrar'}" />
+				</f:facet>
+				<p:outputLabel value="Nome:" id="btnome" />
+				<p:inputText value="#{clienteMb.cliente.nome}" id="nome" />
+				<p:message for="nome" display="precisa ser" />
+				
+				<p:outputLabel value="Telefone:" id="bttelefone"/>
+				<p:inputText value="#{clienteMb.cliente.telefone}" id="telefone" />
+				<h:message for="telefone" showSummary="true" showDetail="false" />
+
+
+				<p:outputLabel value="CPF:" id="btcpf"/>
+				<p:inputText value="#{clienteMb.cliente.cpf}" id="cpf" />
+				<h:message for="cpf" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+
+				<p:outputLabel value="Email:" id="btemail" />
+				<p:inputText value="#{clienteMb.cliente.email}" id="email" />
+				<h:message for="email" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+				<p:outputLabel value="Endereço:" id="btendereco"/>
+				<p:selectOneMenu value="#{clienteMb.cliente.endereco}" id="endereco"
+					converter="enderecoConversor">
+					<f:selectItems value="#{clienteMb.enderecos}" var="endereco"
+						itemLabel="#{endereco.cidade}" />
+				</p:selectOneMenu>
+				<h:message for="endereco" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+			</p:panelGrid>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{clienteMb.gravar()}" value="Concluir" />
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{clienteMb.listar()}" value="Cancelar" />
+			</div>
+		</div>
+		<!-- AVISOS INFORMATIVOS PRIMEFACES -->
+		<p:tooltip id="inf1" for="btnome"
+					value="Digite o nome do cliente"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf2" for="bttelefone"
+					value="Digite o telefone"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf3" for="btcpf"
+					value="Digite o cpf do cliente"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf4" for="btemail"
+					value="Digite o email"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf5" for="btendereco"
+					value="Escolha o endereço onde o cliente mora"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="controleGame"
+		transaction-type="RESOURCE_LOCAL">
+		<class>br.ucb.trabalho.modelo.bean.Cliente</class>
+		<class>br.ucb.trabalho.modelo.bean.Game</class>
+		<class>br.ucb.trabalho.modelo.bean.Vendedor</class>
+		<class>br.ucb.trabalho.modelo.bean.Endereco</class>
+		<class>br.ucb.trabalho.modelo.bean.Produtor</class>
+	
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/trabalhojava" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="eclipselink.logging.level" value="fine" />
+			<property name="eclipselink.ddl-generation" value="none" />
+		</properties>
+	</persistence-unit>
+</persistence>

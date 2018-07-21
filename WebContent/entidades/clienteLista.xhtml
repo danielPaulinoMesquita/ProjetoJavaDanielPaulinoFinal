@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>LISTA DE CLIENTES</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+		<p:messages layout="table" errorStyle="color: red"
+			infoStyle="color: green" warnStyle="color: orange"
+			fatalStyle="color: gray" showSummary="false" showDetail="true" />
+
+		<p:dataTable value="#{clienteMb.clientes}" var="cliente" border="2" id="tbcliente">
+
+			<f:facet name="header">
+				<p:outputLabel value="CLIENTES" />
+			</f:facet>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="nome" />
+				</f:facet>
+				<p:outputLabel value="#{cliente.nome}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="CPF" />
+				</f:facet>
+				<p:outputLabel value="#{cliente.cpf}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="email" />
+				</f:facet>
+				<p:outputLabel value="#{cliente.email}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="telefone" />
+				</f:facet>
+				<p:outputLabel value="#{cliente.email}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="endereco" />
+				</f:facet>
+				<p:outputLabel value="#{cliente.endereco.cidade}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ação" />
+				</f:facet>
+				<p:commandLink action="#{clienteMb.excluir(cliente)}"
+					value="Excluir">
+
+				</p:commandLink>
+					/
+					<p:commandLink action="/entidades/clienteForm" value="Alterar">
+					<f:setPropertyActionListener value="#{cliente}"
+						target="#{clienteMb.cliente}" />
+				</p:commandLink>
+			</p:column>
+		</p:dataTable>
+		</div>
+		<div class="ui-g-12 ui-md-6 ui-lg-6">
+			<p:commandButton action="/index" value="Voltar" />
+		</div>
+		<div class="ui-g-12 ui-md-6 ui-lg-6">
+			<p:commandButton action="#{clienteMb.incluir()}"
+				value="Cadastrar Novo" />
+		</div>
+
+	</h:form>
+</h:body>
+</html>

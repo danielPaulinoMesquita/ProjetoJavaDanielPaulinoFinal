@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>FORMULÁRIO DE GAMES</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<h:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+			<p:panelGrid columns="3" style="width: 100%">
+				<f:facet name="header">
+					<p:outputLabel
+						value="#{gameMb.game.id!=0?'Alterar':'Cadastrar'}" />
+				</f:facet>
+				<p:outputLabel value="Nome:" id="btnome"/>
+				<p:inputText value="#{gameMb.game.nome}" id="nome" required="true" />
+				<p:message for="nome" display="precisa ser" />
+
+				<p:outputLabel value="Categoria:" id="btcate"/>
+				<p:selectOneMenu value="#{gameMb.game.categoria}" id="categoria">
+					<f:selectItems value="#{gameMb.categorias}"/>
+				</p:selectOneMenu>
+				<h:message for="categoria" showSummary="true" showDetail="false" />
+
+
+				<p:outputLabel value="Preço:" id="btpreco"/>
+				<p:inputText value="#{gameMb.game.preco}" id="preco" />
+				<h:message for="preco" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+
+				<p:outputLabel value="Vendedor:" id="btvendedor"/>
+				<p:selectOneMenu value="#{gameMb.game.vendedor}" id="vendedor" converter="vendedorConversor">
+					<f:selectItems value="#{gameMb.vendedores}" var="vendedor" itemLabel="#{vendedor.nome}"/>
+				</p:selectOneMenu>
+				<h:message for="vendedor" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+				
+				<p:outputLabel value="Cliente:" id="btcliente"/>
+				<p:selectOneMenu value="#{gameMb.game.cliente}" id="cliente" converter="clienteConversor">
+					<f:selectItems value="#{gameMb.clientes}" var="cliente" itemLabel="#{cliente.nome}"/>
+				</p:selectOneMenu>
+				<h:message for="cliente" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+				
+			</p:panelGrid>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{gameMb.gravar}" value="Concluir" />
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{gameMb.listar}" value="Cancelar"/>
+			</div>
+		</div>
+		<!-- AVISOS INFORMATIVOS PRIMEFACES -->
+		<p:tooltip id="inf1" for="btnome"
+					value="Digite o titulo do game"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf2" for="btcate"
+					value="Escolha a categoria"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf3" for="btpreco"
+					value="Digite o preço do game"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf4" for="btvendedor"
+					value="Escolha quem vendeu o game"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf5" for="btcliente"
+					value="Escolha o comprador do game"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		
+	</h:form>
+</h:body>
+</html>

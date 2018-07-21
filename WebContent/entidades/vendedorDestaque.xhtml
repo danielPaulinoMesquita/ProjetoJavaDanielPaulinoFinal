@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+
+<h:head>	
+<h:outputStylesheet library="css" name="visualTrabalho.css" />
+</h:head> 
+<h:body> 
+	<h:form>
+	<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<h:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+			<p:panelGrid columns="2" style="width: 100%">
+				<f:facet name="header">
+					<p:outputLabel
+						value="VENDEDOR DESTAQUE" />
+				</f:facet>
+				<p:outputLabel value="Nome:" id="btnome"/>
+				<p:outputLabel value="#{vendedorMb.vendedor.nome}" id="nome"/>
+				
+				<p:outputLabel value="Idade:" id="btidade"/>
+				<p:outputLabel  value="#{vendedorMb.vendedor.idade}" id="idade" />
+			
+				<p:outputLabel value="Email:"  id="btemail"/>
+				<p:outputLabel  value="#{vendedorMb.vendedor.email}" id="email" />
+				
+				<p:outputLabel value="Salário:"  id="btsalario"/>
+				<p:outputLabel value="#{vendedorMb.vendedor.salario}" id="salario" />
+			</p:panelGrid>
+			
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{vendedorMb.listar}" value="Voltar" />
+			</div>
+		</div>
+	</h:form>
+</h:body> 
+</html>

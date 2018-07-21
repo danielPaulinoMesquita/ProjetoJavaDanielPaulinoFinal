@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>LISTA DE PRODUTORES</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+</h:head>
+<h:body>
+<h:form>
+	<div class="ui-g-12 ui-md-12 ui-lg-12">
+		<p:messages layout="table" errorStyle="color: red"
+			infoStyle="color: green" warnStyle="color: orange"
+			fatalStyle="color: gray" showSummary="false" showDetail="true" />
+
+		<p:dataTable value="#{produtorMb.produtores}" var="produtor"
+			border="2">
+
+			<f:facet name="header">
+				<p:outputLabel value="PRODUTORES DE GAME" />
+			</f:facet>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="nome" />
+				</f:facet>
+				<p:outputLabel value="#{produtor.nome}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="cnpj" />
+				</f:facet>
+				<p:outputLabel value="#{produtor.cnpj}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="games produzidos" />
+				</f:facet>
+				<p:dataList value="#{produtor.games}" var="game" type="ordered">
+					#{game.nome}
+				</p:dataList>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ação" />
+				</f:facet>
+				<p:commandLink action="#{produtorMb.excluir(produtor)}"
+					value="Excluir">
+
+				</p:commandLink>
+					/
+					<p:commandLink action="/entidades/produtorForm" value="Alterar">
+					<f:setPropertyActionListener value="#{produtor}"
+						target="#{produtorMb.produtor}" />
+				</p:commandLink>
+			</p:column>
+		</p:dataTable>
+	</div>
+	<div class="ui-g-12 ui-md-6 ui-lg-6">
+		<p:commandButton action="/index" value="Voltar" />
+	</div>
+	<div class="ui-g-12 ui-md-6 ui-lg-6">
+		<p:commandButton action="#{produtorMb.incluir()}"
+			value="Cadastrar Novo" />
+	</div>
+
+	</h:form>
+</h:body>
+</html>

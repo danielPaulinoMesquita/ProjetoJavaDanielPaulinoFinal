@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+	<title>FORMULÁRIO PRODUTORES E JOGOS</title>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<h:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+			<p:panel style="width: 100%">
+				<f:facet name="header">
+					<p:outputLabel value="Cadastrar Relacionamento" />
+				</f:facet>
+				<div class="ui-g-12 ui-md-6 ui-lg-6">
+					<p:outputLabel value="Produtores" id="btprodutor"/>
+					<p:selectOneMenu value="#{produtorGameMb.produtor}" id="produtor" converter="produtorConversor">
+						<f:selectItems value="#{produtorGameMb.produtores}" var="produtor"
+							itemLabel="#{produtor.nome}" />
+					</p:selectOneMenu>
+					<h:message for="produtor" showSummary="true" showDetail="false" />
+				</div>
+
+				<div class="ui-g-12 ui-md-6 ui-lg-6">
+					<p:outputLabel value="Games:" id="btgame"/>
+					<p:selectOneMenu value="#{produtorGameMb.game}" id="game" converter="gameConversor">
+						<f:selectItems value="#{produtorGameMb.games}" var="game"
+							itemLabel="#{game.nome}" />
+					</p:selectOneMenu>
+					<h:message for="game" showSummary="true" showDetail="false" />
+				</div>
+			</p:panel>
+			
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{produtorGameMb.gravarProdutorEGame()}"
+					value="Concluir" />
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{produtorMb.listar()}" value="Cancelar" />
+			</div>
+		</div>
+		<!-- AVISOS INFORMATIVOS PRIMEFACES -->
+		<p:tooltip id="inf1" for="btprodutor"
+					value="Escolha o produtor do Game"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf2" for="btgame"
+					value="Escolha o game que foi produzido"
+		showEffect="clip" hideEffect="explode" position="left" />	
+	</h:form>
+</h:body>
+</html>

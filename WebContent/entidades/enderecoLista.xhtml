@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+	<title>LISTA DE ENDERECOS</title>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+
+			<p:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+
+			<p:dataTable value="#{enderecoMb.enderecos}" var="endereco"
+				border="2">
+
+				<f:facet name="header">
+					<p:outputLabel value="ENDEREÇOS" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="cidade" />
+					</f:facet>
+					<p:outputLabel value="#{endereco.cidade}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="pais" />
+					</f:facet>
+					<p:outputLabel value="#{endereco.pais}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="estado" />
+					</f:facet>
+					<p:outputLabel value="#{endereco.estado}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="cep" />
+					</f:facet>
+					<p:outputLabel value="#{endereco.cep}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ação" />
+					</f:facet>
+					<p:commandLink actionListener="#{enderecoMb.excluir(endereco)}"
+						value="Excluir">
+
+					</p:commandLink>
+					/
+					<p:commandLink action="/entidades/enderecoForm" value="Alterar">
+						<f:setPropertyActionListener value="#{endereco}"
+							target="#{enderecoMb.endereco}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<div class="ui-g-12 ui-md-6 ui-lg-6">
+			<p:commandButton action="/index" value="Voltar" />
+		</div>
+		<div class="ui-g-12 ui-md-6 ui-lg-6">
+			<p:commandButton action="#{enderecoMb.incluir()}"
+				value="Cadastrar Novo" />
+		</div>
+
+	</h:form>
+</h:body>
+</html>

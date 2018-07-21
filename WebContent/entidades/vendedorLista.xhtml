@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>LISTA DE VENDEDOR</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:menubar styleClass="menu-sistema">
+			<p:menuitem value="MENU PRINCIPAL" action="/index"
+				icon="ui-icon-home " />
+			<p:submenu label="EDITAR" icon="ui-icon-pencil">
+				<p:submenu label="Enderecos" icon="ui-icon-contact">
+					<p:menuitem value="Lista" action="#{enderecoMb.listar()}" />
+					<p:menuitem value="Cadastrar" action="#{enderecoMb.incluir()}" />
+				</p:submenu>
+				<p:submenu label="Cliente" icon="ui-icon-contact">
+					<p:menuitem value="Lista" action="#{clienteMb.listar()}" />
+					<p:menuitem value="Cadastrar" action="#{clienteMb.incluir()}" />
+				</p:submenu>
+					<p:submenu label="Vendedor" icon="ui-icon-contact">
+					<p:menuitem value="Lista" action="#{vendedorMb.listar()}" />
+					<p:menuitem value="Cadastrar" action="#{vendedorMb.incluir()}" />
+				</p:submenu>
+				<p:submenu label="Produtor" icon="ui-icon-contact">
+					<p:menuitem value="Lista" action="#{produtorMb.listar()}" />
+					<p:menuitem value="Cadastrar" action="#{produtorMb.incluir()}" />
+					<p:menuitem value="Produtor/Game"
+						action="#{produtorGameMb.incluir()}" />
+				</p:submenu>
+				<p:submenu label="Games" icon="ui-icon-contact">
+					<p:menuitem value="Lista" action="#{gameMb.listar()}" />
+					<p:menuitem value="Cadastrar" action="#{gameMb.incluir()}" />
+				</p:submenu>
+			</p:submenu>
+			
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Localizar"
+						value="#{vendedorMb.nomeConsulta}" />
+					<p:commandButton action="#{vendedorMb.consultar()}"
+						value="Buscar" icon="ui-icon-search" update="tableVendedor"/>
+				</f:facet>
+			
+		</p:menubar>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+
+			<p:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+
+			<p:dataTable value="#{vendedorMb.vendedores}" var="vendedor"
+				border="2" id="tableVendedor">
+
+				<f:facet name="header">
+					<p:outputLabel value="VENDEDORES" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="nome" />
+					</f:facet>
+					<p:outputLabel value="#{vendedor.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="idade" />
+					</f:facet>
+					<p:outputLabel value="#{vendedor.idade}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="email" />
+					</f:facet>
+					<p:outputLabel value="#{vendedor.email}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="salario" />
+					</f:facet>
+					<p:outputLabel value="#{vendedor.salario}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="games vendidos" />
+					</f:facet>
+					<p:dataList value="#{vendedor.games}" var="game" type="ordered">
+			#{game.nome}, #{game.categoria}
+			</p:dataList>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ação" />
+					</f:facet>
+					<p:commandLink action="#{vendedorMb.excluir(vendedor)}"
+						value="Excluir">
+
+					</p:commandLink>
+					/
+					<p:commandLink action="/entidades/vendedorForm" value="Alterar">
+						<f:setPropertyActionListener value="#{vendedor}"
+							target="#{vendedorMb.vendedor}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<div class="ui-g-12 ui-md-4 ui-lg-4">
+			<p:commandButton action="/index" value="Voltar" />
+		</div>
+		<div class="ui-g-12 ui-md-4 ui-lg-4">
+			<p:commandButton action="#{vendedorMb.vendedorDestaque()}"
+				value="Vendedor Destaque" id="btVendedorDestaque" />
+		</div>
+		<div class="ui-g-12 ui-md-4 ui-lg-4">
+			<p:commandButton action="#{vendedorMb.incluir()}"
+				value="Cadastrar Novo" />
+		</div>
+		<p:tooltip id="inf1" for="btVendedorDestaque"
+			value="Mostra o Vendedor que mais vendeu" showEffect="clip"
+			hideEffect="explode" position="left" />
+
+	</h:form>
+</h:body>
+</html>
+

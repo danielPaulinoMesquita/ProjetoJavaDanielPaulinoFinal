@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>LISTA DE GAMES</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<p:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+
+			<p:dataTable value="#{gameMb.games}" var="game" border="2">
+
+				<f:facet name="header">
+					<p:outputLabel value="GAMES VENDIDOS" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="nome" />
+					</f:facet>
+					<p:outputLabel value="#{game.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="categoria" />
+					</f:facet>
+					<p:outputLabel value="#{game.categoria}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="preço" />
+					</f:facet>
+					<p:outputLabel value="#{game.preco}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="comprador" />
+					</f:facet>
+					<p:outputLabel value="#{game.cliente.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="vendedor" />
+					</f:facet>
+					<p:outputLabel value="#{game.vendedor.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ação" />
+					</f:facet>
+					<p:commandLink action="#{gameMb.excluir(game)}" value="Excluir">
+
+					</p:commandLink>
+					/
+					<p:commandLink action="/entidades/gameForm" value="Alterar">
+						<f:setPropertyActionListener value="#{game}"
+							target="#{gameMb.game}" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="/index" value="Voltar" />
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{gameMb.incluir()}" value="Cadastrar Novo" />
+			</div>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>FORMULÁRIO DE ENDERECOS</title>
+	<h:outputStylesheet library="css" name="visualTrabalho.css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<div class="ui-g-12 ui-md-12 ui-lg-12">
+			<p:messages layout="table" errorStyle="color: red"
+				infoStyle="color: green" warnStyle="color: orange"
+				fatalStyle="color: gray" showSummary="false" showDetail="true" />
+				<p:messages id="messages" />
+			<p:panelGrid columns="3" style="width: 100%">
+				<f:facet name="header">
+					<p:outputLabel
+						value="#{enderecoMb.endereco.id!=0?'Alterar':'Cadastrar'}" />
+				</f:facet>
+				<p:outputLabel value="Cidade:" id="btcidade"/>
+				<p:inputText value="#{enderecoMb.endereco.cidade}" id="cidade" label="cidade"/>
+				<p:message for="cidade"/>
+
+				<p:outputLabel value="Pais:" id="btpais"/>
+				<p:inputText value="#{enderecoMb.endereco.pais}" id="pais" />
+				<h:message for="pais" showSummary="true" showDetail="false" />
+
+
+				<p:outputLabel value="Estado:" id="btestado"/>
+				<p:inputText value="#{enderecoMb.endereco.estado}" id="estado" />
+				<h:message for="estado" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+
+				<p:outputLabel value="CEP:" id="btcep"/>
+				<p:inputText value="#{enderecoMb.endereco.cep}" id="cep" />
+				<h:message for="cep" showSummary="true" showDetail="false"
+					errorStyle="color: red" layout="table" />
+
+			</p:panelGrid>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{enderecoMb.gravar}" value="Concluir" />
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-6">
+				<p:commandButton action="#{enderecoMb.listar}" value="Cancelar"/>
+			</div>
+		</div>
+		<!-- AVISOS INFORMATIVOS PRIMEFACES -->
+		<p:tooltip id="inf1" for="btcidade"
+					value="Digite o nome da cidade"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf2" for="btpais"
+					value="Digite o pais"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf3" for="btestado"
+					value="Digite o estado"
+		showEffect="clip" hideEffect="explode" position="left" />
+		
+		<p:tooltip id="inf4" for="btcep"
+					value="Digite o cep do endereço"
+		showEffect="clip" hideEffect="explode" position="left" />
+				
+	</h:form>
+</h:body>
+</html>

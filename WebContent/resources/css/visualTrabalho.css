@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+/* FONTES */
+@font-face {
+    font-family: 'Classic Robot';
+    src: local("../resources/_fonts/fonte_Robot/Classic Robot.otf"), url("../resources/_fonts/fonte_Robot/Classic Robot.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: Classic Robot important;
+	background: url(../resources/imagens/Games.jpg);
+	padding-bottom: 20px;
+	font-size: 17px;
+	margin: 20px;
+}
+div .content{
+	border:medium;
+	border-color: blue;
+}
+/*CONFIGURAÇÃO DAS FONTES EM GERAL */
+.ui-widget {
+    font-family: Classic Robot !important;
+    font-size: 18px;
+    
+}
+
+/* CONFIGURAÇÕES DA BARRA DE MENU */
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    font-family: Classic Robot;
+    font-size: 16px;
+}
+
