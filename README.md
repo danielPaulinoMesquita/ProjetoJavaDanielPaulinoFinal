@@ -38,7 +38,16 @@
 
 **Cadastro Clientes**
 ![cadastroclientes](https://user-images.githubusercontent.com/30932457/48510815-11da4880-e83c-11e8-9f42-3f7bcf6250ad.jpg)
-**Lista**
 
+**Lista Produtoras**
+![listadasprodutras](https://user-images.githubusercontent.com/30932457/48511246-54505500-e83d-11e8-9fc1-da40dc980e52.jpg)
 
-**Lista**
+**Cadastro Produtoras**
+![cadastroprodutoras](https://user-images.githubusercontent.com/30932457/48511252-5a463600-e83d-11e8-9b06-370b65dc9222.jpg)
+
+**Lista Games**
+![listagamesvendidos](https://user-images.githubusercontent.com/30932457/48511268-66ca8e80-e83d-11e8-98da-a81197d38385.jpg)
+
+**Cadastro Games**
+![cadastrogames](https://user-images.githubusercontent.com/30932457/48511290-72b65080-e83d-11e8-9456-56c5ff16725f.jpg)
+
